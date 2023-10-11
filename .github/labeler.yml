@@ -22,30 +22,6 @@ kubernetes-monitoring:
 kubernetes-networks:
   - kubernetes-networks/*
   
-kubernetes-intro:
-  - kubernetes-intro/*
-
-kubernetes-controllers:
-  - kubernetes-controllers/*
-  
-kubernetes-security:
-  - kubernetes-security/*
-  
-kubernetes-debug:
-  - kubernetes-debug/*
-  
-kubernetes-gitops:
-  - kubernetes-gitops/*
-
-kubernetes-logging:
-  - kubernetes-logging/*
-  
-kubernetes-monitoring:
-  - kubernetes-monitoring/*
-  
-kubernetes-networks:
-  - kubernetes-networks/*
-  
 kubernetes-operators:
   - kubernetes-operators/*
   
