@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: kazantsev27/kubernetes-intro:latest
+        livenessProbe:
+          tcpSocket:
+            port: 8000
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 8000
+        volumeMounts:
+        - name: index
+          mountPath: /app
+      initContainers:
+      - name: init
+        image: busybox:1.31.0
+        command: ["sh", "-c", "wget -O- https://tinyurl.com/otus-k8s-intro | sh"]
+        volumeMounts:
+        - name: index
+          mountPath: /app
+      volumes:
+      - name: index
+        emptyDir: {}
