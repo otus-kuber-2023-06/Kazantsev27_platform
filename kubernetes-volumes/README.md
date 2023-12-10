@@ -1,4 +1,4 @@
-# Домашниt задание №4
+# Домашнее задание №4
 
 Выполненные шаги в `HW4`:
 1. Запуск kind - `kind create cluster`
@@ -47,3 +47,78 @@ stringData:
   password: minio123
 ```
 8. Исправлена конфигурация `minio-statefulset.yaml`
+### Создание и использование PVC в Kubernetes
+9. Создан `my-pv.yaml`
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data
+``` 
+10. Создан `my-pvc.yaml`
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 500Mi
+```
+11. Создан pod (модуль) `my-pod.yaml`
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: mypod
+      image: nginx
+      volumeMounts:
+        - mountPath: "/app/data"
+          name: mypv
+  volumes:
+    - name: mypv
+      persistentVolumeClaim:
+        claimName: my-pvc
+```
+12. Выполняем:
+```
+sudo kubectl apply -f my-pv.yaml -f my-pvc.yaml -f my-pod.yaml
+```
+13. Подключаемся к Pod my-pod: `sudo kubectl exec -it my-pod -- bash`
+14. Создаем файл `data.txt` в каталоге `/app/data`:
+```
+root@my-pod:/app/data# echo "Kazantsev27" > data.txt
+root@my-pod:/app/data# cat data.txt
+Kazantsev27
+root@my-pod:/app/data#
+```
+15. Удалил существующий Pod - my-pod и далее создан новый Pod: 
+```
+sudo kubectl delete po my-pod
+sudo kubectl apply -f my-pod.yaml
+```
+16. Просмотр содердимого `/app/data`
+```
+root@my-pod:/# cd /app/data/
+root@my-pod:/app/data# ls -l
+total 4
+-rw-r--r-- 1 root root 12 Dec 10 16:52 data.txt
+root@my-pod:/app/data# cat data.txt
+Kazantsev27
+root@my-pod:/app/data#
+```
+17. 
