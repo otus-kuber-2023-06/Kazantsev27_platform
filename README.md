@@ -8,3 +8,6 @@ cd .[README](/kubernetes-controllers/README.md)
 
 ## Домашнее задание №3
 cd .[README](/kubernetes-networks/README.md)
+
+## Домашнее задание №4
+cd .[README](/kubernetes-volumes/README.md)
