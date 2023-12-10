@@ -106,7 +106,7 @@ root@my-pod:/app/data# cat data.txt
 Kazantsev27
 root@my-pod:/app/data#
 ```
-15. Удалил существующий Pod - my-pod и далее создан новый Pod: 
+15. Удалил существующий Pod - my-pod2 и далее создан новый Pod: 
 ```
 sudo kubectl delete po my-pod
 sudo kubectl apply -f my-pod.yaml
@@ -121,4 +121,4 @@ root@my-pod:/app/data# cat data.txt
 Kazantsev27
 root@my-pod:/app/data#
 ```
-17. 
+17. Работа завершена.
