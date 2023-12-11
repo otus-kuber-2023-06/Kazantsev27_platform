@@ -34,4 +34,28 @@ NAME      SECRETS   AGE
 carol     0         39s
 default   0         39s
 ```
-8. 
+8. В рамках `task03` созданы - `namespace.yaml`, `service-account.yaml`, `rolebinding.yaml`, `service-account-2.yaml`, `rolebinding-2.yaml`
+9. Выполнено:
+```
+sudo kubectl apply -f namespace.yaml -f service-account.yaml -f rolebinding.yaml -f service-account-2.yaml -f rolebinding-2.yaml
+```
+10. Выполнено проверка:
+```
+sudo kubectl get sa -n dev
+
+NAME      SECRETS   AGE
+default   0         19s
+jane      0         19s
+ken       0         19s
+
+sudo kubectl describe sa jane -n dev
+
+Name:                jane
+Namespace:           dev
+Labels:              <none>
+Annotations:         <none>
+Image pull secrets:  <none>
+Mountable secrets:   <none>
+Tokens:              <none>
+Events:              <none>
+```
