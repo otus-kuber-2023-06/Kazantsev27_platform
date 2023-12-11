@@ -5,7 +5,7 @@
 ```
 mkdir task01 task02 task03
 ```
-2. Созданы - `service-account.yaml`, `rolebinding.yaml`,`service-account-no.yaml`
+2. В рамках `task01` cозданы - `service-account.yaml`, `rolebinding.yaml`,`service-account-no.yaml`
 3. Выполнено:
 ```
 sudo kubectl apply -f service-account.yaml
@@ -21,4 +21,17 @@ bob       0         3m8s
 dave      0         24s
 default   0         24h
 ```
-5. 
+5. В рамках `task02` созданы - `namespace-prometheus.yaml`, `service-account.yaml`, `role.yaml`, `rolebinding.yaml`
+6. Выполнено:
+```
+sudo kubectl apply -f namespace-prometheus.yaml -f service-account.yaml -f role.yaml -f rolebinding.yaml
+```
+7. Выполнена проверка:
+```
+sudo kubectl get sa -n prometheus
+
+NAME      SECRETS   AGE
+carol     0         39s
+default   0         39s
+```
+8. 
