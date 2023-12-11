@@ -11,3 +11,6 @@ cd .[README](/kubernetes-networks/README.md)
 
 ## Домашнее задание №4
 cd .[README](/kubernetes-volumes/README.md)
+
+## Домашнее задание №5
+cd .[README](/kubernetes-security/README.md)
